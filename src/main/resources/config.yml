@@ -1,0 +1,12 @@
+# ******************************************************
+# * HideNameTag
+#   Hiding a nametag players, and display on actionbar.
+#
+#   Creator: game_engineer
+#
+# * Optional dependencies:
+#   PlaceholderAPI
+# ******************************************************
+
+messages:
+  onClick: "%vault_prefix%&7%player_name%"
