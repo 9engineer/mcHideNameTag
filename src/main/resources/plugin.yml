@@ -1,0 +1,6 @@
+name: HideNameTag
+version: '${project.version}'
+main: mc.photon.hidenametag.core
+api-version: 1.19
+softdepend: [ PlaceholderAPI ]
+authors: [ Photon ]
