@@ -1,4 +1,6 @@
 package mc.photon.hidenametag;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,17 +38,17 @@ public final class core extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onClick(PlayerInteractAtEntityEvent event) {
 		if (!(event.getRightClicked() instanceof Player)) return;
-		String msgClick = getConfig().getString("messages.onClick");
+		String ActionBarText = getConfig().getString("messages.onClick");
 		if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null)
-			msgClick = PlaceholderAPI.setPlaceholders(((Player) event.getRightClicked()).getPlayer(), msgClick);
-		String ActionBarText = msgClick;
+			ActionBarText = PlaceholderAPI.setPlaceholders(((Player) event.getRightClicked()).getPlayer(), ActionBarText);
+		final Component ActionBarComponent = LegacyComponentSerializer.legacyAmpersand().deserialize(ActionBarText);
 		new BukkitRunnable() {
 			private int i = 0;
 			@Override
 			public void run() {
 				if (i >= 1) cancel();
 				++i;
-				event.getPlayer().sendActionBar('&', ActionBarText);
+				event.getPlayer().sendActionBar(ActionBarComponent);
 			}
 		}.runTaskTimer(core.this, 0L, 20L);
 	}
