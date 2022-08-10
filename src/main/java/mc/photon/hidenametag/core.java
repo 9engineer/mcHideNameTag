@@ -1,8 +1,5 @@
 package mc.photon.hidenametag;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -49,10 +46,7 @@ public final class core extends JavaPlugin implements Listener {
 			public void run() {
 				if (i >= 1) cancel();
 				++i;
-				event.getPlayer().spigot().
-						sendMessage(ChatMessageType.ACTION_BAR,
-							TextComponent.fromLegacyText(
-								ChatColor.translateAlternateColorCodes('&', ActionBarText)));
+				event.getPlayer().sendActionBar('&', ActionBarText);
 			}
 		}.runTaskTimer(core.this, 0L, 20L);
 	}
